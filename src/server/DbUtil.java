@@ -57,6 +57,25 @@ public class DbUtil {
             return -1;
         }
     }
+    public int insertUser(String name,String[] passSalt){
+        if(!existUser(name)){
+            String sqlInsertUser="INSERT INTO USER (name,password,salt) VALUES (?,?,?)";
+            try(Connection conn=DriverManager.getConnection(this.pathDb)) {
+                PreparedStatement preparedStat= conn.prepareCall(sqlInsertUser);
+                preparedStat.setString(1,name);
+                preparedStat.setString(2,passSalt[0]);
+                preparedStat.setString(3,passSalt[1]);
+                preparedStat.executeUpdate();
+                return 1;
+            }catch (SQLException e){
+                e.printStackTrace();
+                return 0;
+            }
+        }else{
+            System.out.println("\""+name+"\" Utente Già iscritto");
+            return -1;
+        }
+    }
     public boolean existUser(String user){
         String sqlSelect="SELECT NAME FROM USER WHERE NAME='"+user+"';";
         try(Connection conn=DriverManager.getConnection(this.pathDb)) {

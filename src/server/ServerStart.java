@@ -24,11 +24,11 @@ public class ServerStart {
         /*
         * Inserisco degli utenti esempio
         * */
-        String[] passSalt=hashUtil.hash("Ciao123");
-        dbUtil.insertUser("WalterWhite",passSalt[0],passSalt[1]);
-        passSalt=hashUtil.hash("Password");
-        dbUtil.insertUser("ivan",passSalt[0],passSalt[1]);
-        passSalt=hashUtil.hash("Password");
+        //Method 1
+        dbUtil.insertUser("WalterWhite",hashUtil.hash("Ciao123"));
+        dbUtil.insertUser("ivan",hashUtil.hash("Password"));
+        //Method 2
+        String[] passSalt=hashUtil.hash("Password");
         dbUtil.insertUser("alexa",passSalt[0],passSalt[1]);
         /*String sqlDrop="DROP TABLE user IF EXISTS";
         String sqlCreate="CREATE TABLE IF NOT EXISTS PUBLIC.\"user\" (ID INTEGER NOT NULL AUTO_INCREMENT,NAME VARCHAR(25) NOT NULL,PASSWORD VARCHAR(64) NOT NULL,SALT VARCHAR(8) NOT NULL,CONSTRAINT \"id\" PRIMARY KEY (ID))";
