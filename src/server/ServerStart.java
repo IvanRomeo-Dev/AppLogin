@@ -4,30 +4,14 @@ import org.h2.jdbc.JdbcSQLSyntaxErrorException;
 import server.model.DbConnUtil;
 import server.model.HashUtil;
 import server.model.ServerWork;
-import sun.awt.windows.ThemeReader;
 import utils.RsaGenerator;
-import utils.RsaUtils;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.nio.Buffer;
-import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.sql.*;
-import java.util.Base64;
 import java.util.Scanner;
 
 public class ServerStart {
-    private String prompt="Server#> ";
     public static void main(String[] args) throws NoSuchAlgorithmException {
 
         PrivateKey privateKey;

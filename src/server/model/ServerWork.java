@@ -17,6 +17,12 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.Base64;
 
+
+/*
+* Classe creata per predisporre il programma a un futuro multithread
+* per accettare più connessioni contemporaneamente;
+* Al momento è sufficente poter accettare una sola connessione;
+* */
 public class ServerWork extends Thread {
 
     private ServerSocket serverSocket;
@@ -62,14 +68,14 @@ public class ServerWork extends Thread {
                         String msg="";
                         try{
                             msg=reader.readLine().trim();
-                            System.out.println("Il client : "+msg);
+                            System.out.println("Il client : "+msg);//Messaggio di debug per leggere cosa richiede un client
                         }catch(Exception e){
                             writer.close();
                             reader.close();
                             socket.close();
                             startServer();
                         }
-                        String[] value=msg.split(" ",3);
+                        String[] value=msg.split(" ",3);//Nella prima posizione troviamo il cmd
                         switch (value[0]){
                             case "getPublickey":{
                                 writer.writeBytes(Base64.getEncoder().encodeToString(publicKey.getEncoded())+"\n");

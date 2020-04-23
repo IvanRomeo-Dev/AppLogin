@@ -9,6 +9,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+/*
+ *Questa CLasse Avvia il client startando il Controller per gestire la Gui (FXML) e il Model per la logica.
+ */
 public class StartClient extends Application {
 
 
@@ -21,7 +24,7 @@ public class StartClient extends Application {
             loader.setControllerFactory(new Callback<Class<?>, Object>() {
                 @Override
                 public Object call(Class<?> aclass){
-                    return new LoginController(clientUtil);
+                    return new LoginController(clientUtil);//Passo come paramentro al Controller l'oggetto clientUtil (il Model)
                 }
             });
             Parent root= loader.load();

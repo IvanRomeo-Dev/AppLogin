@@ -11,15 +11,19 @@ import java.net.Socket;
 import java.security.PublicKey;
 import java.util.Base64;
 
+
+/*
+Questa classe si occupa della logica di funzionamento del client
+ */
 public class ClientUtil {
     private Socket socket;
     private BufferedReader reader;
     private DataOutputStream writer;
     private PublicKey publickeyServer;
-    private boolean waiting=false;
 
     public ClientUtil(){
     }
+
     public ClientUtil(String host,int port){
         inizialize(host,port);
     }
@@ -37,17 +41,13 @@ public class ClientUtil {
 
     public int execLogin(byte[] credentialsRsa) throws IOException {
         try {
-            String bs64cred= Base64.getEncoder().encodeToString(credentialsRsa);
+            String bs64cred= Base64.getEncoder().encodeToString(credentialsRsa);//Per il trasferimento codifico l'array di byte in base64
             writer.writeBytes("login "+ bs64cred+"\n");
-            System.out.println("login richiesto");
-            waiting=true;
+            System.out.println("login richiesto");//Messaggio di debug in console
             int res=Integer.parseInt(reader.readLine().trim());
-            waiting=false;
             return res;
         } catch (IOException e) {
-            getWriter().close();
-            getReader().close();
-            getSocket().close();
+            closeall();
             e.printStackTrace();
             return 0;
         }
@@ -55,9 +55,7 @@ public class ClientUtil {
     public boolean requestPLK(){
         try {
             writer.writeBytes("getPublickey\n");
-            waiting=true;
             String msg=reader.readLine().trim();
-            waiting=false;
             publickeyServer= RsaUtils.getPublicKey(msg);
             System.out.println("Public Key ricevuta: "+msg);
             return true;
@@ -66,23 +64,15 @@ public class ClientUtil {
             return false;
         }
     }
-    public Socket getSocket() {
-        return socket;
-    }
-
-    public BufferedReader getReader() {
-        return reader;
-    }
-
-    public DataOutputStream getWriter() {
-        return writer;
-    }
 
     public PublicKey getPublickeyServer() {
         return publickeyServer;
     }
 
-    public boolean isWaiting() {
-        return waiting;
+    public void closeall() throws IOException {
+        writer.close();
+        reader.close();
+        socket.close();
     }
+
 }

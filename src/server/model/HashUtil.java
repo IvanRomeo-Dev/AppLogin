@@ -9,6 +9,9 @@ public class HashUtil {
 
     public HashUtil(){
     }
+    /*
+    * Metodo per Bytes -> String hex
+    * */
     private static String bytesToHex(byte[] hash) {
         StringBuffer hexString = new StringBuffer();
         for (int i = 0; i < hash.length; i++) {
@@ -18,6 +21,9 @@ public class HashUtil {
         }
         return hexString.toString();
     }
+    /*
+     *Metodo che data in input una string effettua l'hash aggiungendo un salt generato automaticamente di 8 char
+     */
     public static String[] hashWsalt(String password) throws NoSuchAlgorithmException {
         String[] passSalt=new String[2];
         String salt=generateSalt(8); //faccio generare un salt da 8 caratteri
@@ -29,16 +35,17 @@ public class HashUtil {
         //System.out.println(passSalt[0]);
         return passSalt;
     }
+    /*
+    *Stesso di hashWsalt ma senza la generazione del salt
+    * */
     public static String hashWoutsalt(String password) throws NoSuchAlgorithmException {
-        String passSalt;
+        String pass;
         byte[] encodedhash = MessageDigest.getInstance("SHA-256").digest(password.getBytes(StandardCharsets.UTF_8));
-        //System.out.print("Password con salt generato hashata: ");
-        passSalt=bytesToHex(encodedhash);
-        //System.out.println(passSalt[0]);
-        return passSalt;
+        pass=bytesToHex(encodedhash);
+        return pass;
     }
 /*
-Funzione che mi genera un salt
+ * Metodo che genera un salt
  */
     private static String generateSalt(int size){
         String salt="";

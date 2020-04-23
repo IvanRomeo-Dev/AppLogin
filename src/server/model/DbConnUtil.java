@@ -8,13 +8,12 @@ import java.sql.*;
 public class DbConnUtil {
 
     private String pathDb;
-    //Tabella User query per la creazione
+    //Tabella User query per la creazione se non esiste già
     private String sqlCreate="CREATE TABLE IF NOT EXISTS USER (ID INTEGER NOT NULL AUTO_INCREMENT,NAME VARCHAR(25) NOT NULL,PASSWORD VARCHAR(64) NOT NULL,SALT VARCHAR(8) NOT NULL,CONSTRAINT \"id\" PRIMARY KEY (ID),CONSTRAINT USER_UN UNIQUE (NAME))";
 
     public DbConnUtil(String pathDb){
         this.pathDb=pathDb;
-
-        //eseguo la query che crea la tabella non appena creato l'oggetto controllando se già esiste
+        //eseguo la query che crea la tabella non appena creato l'oggetto
         executeUpdate(sqlCreate);
     }
 
@@ -94,15 +93,7 @@ public class DbConnUtil {
             return -1;
         }
     }
-    public void deleteTable(String table){
-        String sqlDelete="DROP TABLE IF EXISTS "+table;
-        try(Connection conn=DriverManager.getConnection(this.pathDb)) {
-            Statement statement=conn.createStatement();
-            statement.executeUpdate(sqlDelete);
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
+
     public void deleteDataTable(String table){
         String sqlDelete="DELETE FROM "+table;
         try(Connection conn=DriverManager.getConnection(this.pathDb)) {
@@ -129,7 +120,7 @@ public class DbConnUtil {
         return false;
     }
 /*
-TEST METODO PROBLEMI CON LO STATMENT E RESULTSET(viene chiuso lo statment senza permettere di recuperare i valori)
+TEST METODO PROBLEMI CON LO STATMENT E RESULTSET (viene chiuso lo statment senza permettere di recuperare i valori)
     public ResultSet getTable(String table){
         String sqlSelect="SELECT * FROM "+table;
         try(Connection conn=DriverManager.getConnection(this.pathDb)){
