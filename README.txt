@@ -22,3 +22,6 @@ L'applicazione realizzata è divisa in due parti:
 
  In oltre il programma è disponibile su GitHub all'indirizzo:
     https://github.com/IvanRomeo-Dev/AppLogin
+
+
+IDE utilizzato Intellij
