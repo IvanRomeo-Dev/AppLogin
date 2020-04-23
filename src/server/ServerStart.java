@@ -23,7 +23,7 @@ public class ServerStart {
 
 
         //inizializzo la classe del db e setto la path
-        dbConnUtil=new DbConnUtil("jdbc:h2:c:\\tmp\\test");
+        dbConnUtil=new DbConnUtil("jdbc:h2:c:\\tmp\\DbAppLogin");
         /*
         * Inserisco degli utenti esempio
         * */
