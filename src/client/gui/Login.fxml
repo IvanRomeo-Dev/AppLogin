@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.LoginController">
+   <top>
+      <Label text="Login" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Haettenschweiler" size="35.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets top="6.0" />
+         </BorderPane.margin>
+      </Label>
+   </top>
+   <center>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" prefHeight="165.0" prefWidth="600.0" spacing="20.0">
+               <children>
+                  <HBox alignment="TOP_CENTER" prefHeight="29.0" prefWidth="600.0" spacing="10.0">
+                     <children>
+                        <Label prefHeight="25.0" prefWidth="25.0" text="Host" />
+                        <TextField fx:id="text_host" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="55.0" prefHeight="48.0" prefWidth="600.0" spacing="10.0">
+                     <children>
+                        <Label prefHeight="23.0" prefWidth="22.0" text="Port" />
+                        <TextField fx:id="text_port" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="48.0" prefWidth="600.0" spacing="10.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="56.0" text="Username" />
+                        <TextField fx:id="text_user" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="62.0" prefWidth="600.0" spacing="10.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="56.0" text="Password" />
+                        <TextField fx:id="text_pass" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handle_test" text="Test Connection" />
+                        <Button mnemonicParsing="false" onAction="#handle_login" text="Login" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+            <Label text="Result:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="lbl_result">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+      </VBox>
+   </center>
+</BorderPane>
