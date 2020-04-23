@@ -64,7 +64,7 @@ public class LoginController {
                 clientUtil.closeall();
             }
         }else{
-            text_result.appendText("Porta non valida");
+            text_result.appendText("Porta non valida\n");
         }
 
     }
@@ -111,7 +111,7 @@ public class LoginController {
             else
                 text_result.appendText("Connessione non riuscita\n");
         }else{
-            text_result.appendText("Porta non valida");
+            text_result.appendText("Porta non valida\n");
         }
 
 
