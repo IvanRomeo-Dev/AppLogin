@@ -6,7 +6,7 @@
         <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
       </element>
       <element id="module-output" name="AppLogin" />
-      <element id="library" level="project" name="h2-1.4.200" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/h2-1.4.200.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

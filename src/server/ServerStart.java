@@ -5,6 +5,8 @@ import server.model.DbConnUtil;
 import server.model.HashUtil;
 import server.model.ServerWork;
 import utils.RsaGenerator;
+
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
@@ -12,7 +14,7 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class ServerStart {
-    public static void main(String[] args) throws NoSuchAlgorithmException {
+    public static void main(String[] args) throws NoSuchAlgorithmException, IOException {
 
         PrivateKey privateKey;
         PublicKey publicKey;
@@ -106,6 +108,11 @@ public class ServerStart {
                 }
                 case "m":{
                     System.out.println("Menù:\n1)Inserisci nuovo utente\n2)Mostra Tabella utenti\n3)Elimina dati dalla tabella utenti\nm)Mostra menù\nquit)Per terminare\n");
+                    break;
+                }
+                case "quit":{
+                    System.out.println("Bye Bye\n");
+                    serverWork.closeall();
                     break;
                 }
                 default:

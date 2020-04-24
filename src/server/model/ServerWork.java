@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
@@ -33,6 +34,7 @@ public class ServerWork extends Thread {
     private DbConnUtil dbConnUtil;
     private PrivateKey privateKey;
     private PublicKey publicKey;
+    private boolean serverrunning;
 
 
     public ServerWork(DbConnUtil dbConnUtil,PublicKey publicKey,PrivateKey privateKey){
@@ -44,7 +46,9 @@ public class ServerWork extends Thread {
     @Override
     public void run(){
         inizializeServer();
+        serverrunning=true;
         startServer();
+
     }
 
     public  void inizializeServer(){
@@ -58,7 +62,7 @@ public class ServerWork extends Thread {
     }
     public void startServer(){
         try{
-            while(true){
+            while(!serverSocket.isClosed()){
                 socket=serverSocket.accept();
                 System.out.println("Connessione accettata");
                 if(true){
@@ -101,8 +105,15 @@ public class ServerWork extends Thread {
                 }
             }
 
+        }catch (SocketException e){
+            System.out.println("Server chiuso");
         }catch (IOException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException | NoSuchAlgorithmException e){
             e.printStackTrace();
         }
+    }
+    public void closeall() throws IOException {
+        serverSocket.close();
+        interrupt();
+
     }
 }
